@@ -2,9 +2,9 @@ package ru.mail.techpark.android;
 
 import android.os.Bundle;
 
-class NumbersSource {
+public final class NumbersSource {
 
-    private static final NumbersSource ourInstance = new NumbersSource();
+    private static final NumbersSource OUR_INSTANCE = new NumbersSource();
     private int numbers;
 
     private NumbersSource() {
@@ -12,7 +12,7 @@ class NumbersSource {
     }
 
     static NumbersSource getInstance() {
-        return ourInstance;
+        return OUR_INSTANCE;
     }
 
     //get item with array-based indexing
