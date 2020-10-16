@@ -13,8 +13,6 @@ import androidx.fragment.app.Fragment;
 
 public class DetailViewFragment extends Fragment {
 
-   // private static final String LIST_ITEM = "LIST_ITEM";
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

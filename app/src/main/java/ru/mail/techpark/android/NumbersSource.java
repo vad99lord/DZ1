@@ -35,6 +35,8 @@ class NumbersSource {
     }
 
     public static class NumberModel {
+        public static final String NUMBER = "MODEL_NUMBER";
+        public static final String COLOR = "MODEL_COLOR";
         int mColorId;
         int mNumber;
 
@@ -53,14 +55,14 @@ class NumbersSource {
 
         //put this model to Bundle
         public void putToBundle(Bundle bundle){
-            bundle.putInt("MODEL_NUMBER",getNumber());
-            bundle.putInt("MODEL_COLOR", getColorId());
+            bundle.putInt(NUMBER,getNumber());
+            bundle.putInt(COLOR, getColorId());
         }
 
         //get this model from Bundle
         public static NumberModel getFromBundle(Bundle bundle){
-            int number = bundle.getInt("MODEL_NUMBER");
-            int color = bundle.getInt("MODEL_COLOR");
+            int number = bundle.getInt(NUMBER);
+            int color = bundle.getInt(COLOR);
             return new NumberModel(number,color);
         }
     }

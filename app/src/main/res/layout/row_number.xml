@@ -14,8 +14,8 @@
         tools:textColor="@android:color/holo_purple"
         tools:background="@android:color/holo_blue_bright"
         android:gravity="center"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
+        android:minHeight="@dimen/num_min_size"
+        android:minWidth="@dimen/num_min_size"
         android:padding="8dp"/>
 
 </FrameLayout>
