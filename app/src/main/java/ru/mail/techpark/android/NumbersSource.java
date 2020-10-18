@@ -5,25 +5,40 @@ import android.os.Bundle;
 public final class NumbersSource {
 
     private static final NumbersSource OUR_INSTANCE = new NumbersSource();
+    public static final String DATA_SIZE = "NUMBERS_SIZE";
     private int numbers;
 
     private NumbersSource() {
-        numbers = 100;
+        setSize(100);
     }
 
     static NumbersSource getInstance() {
         return OUR_INSTANCE;
     }
 
+    public static void onSave(Bundle bundle){
+        bundle.putInt(DATA_SIZE,getInstance().getSize());
+    }
+
+
+    public static void onRestore(Bundle bundle){
+        int size = bundle.getInt(DATA_SIZE);
+        getInstance().setSize(size);
+    }
+
     //get item with array-based indexing
-    public NumberModel getItem(int index) {
+    public NumberEntity getItem(int index) {
         int number = index + 1;
         int color;
         if (number % 2 == 0)
             color = R.color.red;
         else
             color = R.color.blue;
-        return new NumberModel(number,color);
+        return new NumberEntity(number,color);
+    }
+
+    private void setSize(int size){
+        numbers = size;
     }
 
     public int getSize() {
@@ -34,13 +49,13 @@ public final class NumbersSource {
         numbers += numOfElements;
     }
 
-    public static class NumberModel {
-        public static final String NUMBER = "MODEL_NUMBER";
-        public static final String COLOR = "MODEL_COLOR";
+    public static class NumberEntity {
+        public static final String NUMBER = "ENTITY_NUMBER";
+        public static final String COLOR = "ENTITY_COLOR";
         int mColorId;
         int mNumber;
 
-        public NumberModel(int number, int colorId) {
+        public NumberEntity(int number, int colorId) {
             this.mColorId = colorId;
             this.mNumber = number;
         }
@@ -60,14 +75,14 @@ public final class NumbersSource {
         }
 
         //get this model from Bundle
-        public static NumberModel getFromBundle(Bundle bundle){
+        public static NumberEntity getFromBundle(Bundle bundle){
             int number = bundle.getInt(NUMBER);
             int color = bundle.getInt(COLOR);
-            return new NumberModel(number,color);
+            return new NumberEntity(number,color);
         }
     }
 
     public interface OnItemClickListener {
-        void onItemClick(NumberModel number);
+        void onItemClick(NumberEntity number);
     }
 }

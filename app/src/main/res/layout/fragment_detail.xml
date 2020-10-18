@@ -9,5 +9,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         tools:text="100"
-        android:textSize="40sp"/>
+        android:textSize="@dimen/detail_number_font_size"/>
 </FrameLayout>

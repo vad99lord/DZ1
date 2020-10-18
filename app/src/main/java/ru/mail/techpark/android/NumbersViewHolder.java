@@ -17,7 +17,7 @@ public class NumbersViewHolder extends RecyclerView.ViewHolder implements View.O
         itemView.setOnClickListener(this);
     }
 
-    public void bindItemData(NumbersSource.NumberModel number) {
+    public void bindItemData(NumbersSource.NumberEntity number) {
         int color = mNumber.getResources().getColor(number.getColorId());
         mNumber.setTextColor(color);
         mNumber.setText(String.valueOf(number.getNumber()));

@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class NumbersAdapter extends RecyclerView.Adapter<NumbersViewHolder> {
 
     private final NumbersSource mData;
-    final NumbersSource.OnItemClickListener mItemClickListener;
-    final OnPositionClickListener mPosClickListener;
+    private final NumbersSource.OnItemClickListener mItemClickListener;
+    private final OnPositionClickListener mPosClickListener;
 
     public NumbersAdapter(NumbersSource data, NumbersSource.OnItemClickListener itemClickListener) {
         super();
@@ -31,7 +31,6 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull NumbersViewHolder holder, int position) {
         holder.bindItemData(mData.getItem(position));
-        //Log.d("Bind", "onBind"+position);
     }
 
     @Override
@@ -41,7 +40,7 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersViewHolder> {
 
     public void addItem() {
         mData.addItems(1);
-        notifyItemInserted(getItemCount());
+        notifyItemInserted(getItemCount()-1);
     }
 
 

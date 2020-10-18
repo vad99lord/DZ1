@@ -17,11 +17,12 @@ public class RecyclerViewFragment extends Fragment {
 
     private NumbersSource.OnItemClickListener mItemClickListener;
 
-
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        mItemClickListener = (NumbersSource.OnItemClickListener) context;
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            NumbersSource.onRestore(savedInstanceState);
+        }
     }
 
     @Nullable
@@ -33,7 +34,7 @@ public class RecyclerViewFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler);
 
-        //recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
+
         final int columns = getResources().getInteger(R.integer.grid_columns);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), columns));
 
@@ -47,11 +48,20 @@ public class RecyclerViewFragment extends Fragment {
         return view;
     }
 
-
     @Override
-    public void onDetach() {
-        mItemClickListener = null;
-        super.onDetach();
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        NumbersSource.onSave(outState);
     }
 
+
+    public static RecyclerViewFragment newInstance(NumbersSource.OnItemClickListener itemClickListener){
+        RecyclerViewFragment recyclerViewFragment = new RecyclerViewFragment();
+        recyclerViewFragment.setOnItemClickListener(itemClickListener);
+        return recyclerViewFragment;
+    }
+
+    public void setOnItemClickListener(NumbersSource.OnItemClickListener mItemClickListener) {
+        this.mItemClickListener = mItemClickListener;
+    }
 }

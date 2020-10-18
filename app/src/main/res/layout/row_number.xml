@@ -16,6 +16,6 @@
         android:gravity="center"
         android:minHeight="@dimen/num_min_size"
         android:minWidth="@dimen/num_min_size"
-        android:padding="8dp"/>
+        android:padding="@dimen/num_padding"/>
 
 </FrameLayout>
