@@ -60,7 +60,7 @@ public class RecyclerViewFragment extends Fragment {
         return recyclerViewFragment;
     }
 
-    public void setOnItemClickListener(NumbersSource.OnItemClickListener mItemClickListener) {
-        this.mItemClickListener = mItemClickListener;
+    public void setOnItemClickListener(NumbersSource.OnItemClickListener itemClickListener) {
+        mItemClickListener = itemClickListener;
     }
 }

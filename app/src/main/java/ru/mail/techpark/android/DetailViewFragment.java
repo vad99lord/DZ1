@@ -13,8 +13,6 @@ import androidx.fragment.app.Fragment;
 
 public class DetailViewFragment extends Fragment {
 
-    public static final String EMPTY_ARGS = "No number supplied to fragment";
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -27,8 +25,7 @@ public class DetailViewFragment extends Fragment {
         Bundle args = getArguments();
         TextView textView = view.findViewById(R.id.number_text);
         if (args == null){
-            textView.setText(EMPTY_ARGS);
-            return;
+            throw new NullPointerException(getClass().getSimpleName()+": savedInstanceState is null!");
         }
         NumbersSource.NumberEntity number = NumbersSource.NumberEntity.getFromBundle(args);
         int color  = textView.getResources().getColor(number.getColorId());

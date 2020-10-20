@@ -1,7 +1,6 @@
 package ru.mail.techpark.android;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
@@ -10,9 +9,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static final String RECYCLER_TAG = "RecyclerFragment";
-    private final NumbersSource.OnItemClickListener itemClickListener = numberModel -> {
+    private final NumbersSource.OnItemClickListener itemClickListener = numberEntity -> {
         Bundle args = new Bundle();
-        numberModel.putToBundle(args);
+        numberEntity.putToBundle(args);
         DetailViewFragment detailViewFragment = new DetailViewFragment();
         detailViewFragment.setArguments(args);
         getSupportFragmentManager().beginTransaction()
@@ -25,17 +24,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (getSupportFragmentManager().findFragmentById(R.id.fragments_container) == null) {
+        RecyclerViewFragment recyclerViewFragment = (RecyclerViewFragment) getSupportFragmentManager().findFragmentByTag(RECYCLER_TAG);
+        if (recyclerViewFragment == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.fragments_container, RecyclerViewFragment.newInstance(itemClickListener),RECYCLER_TAG).commit();
+            recyclerViewFragment = new RecyclerViewFragment();
+            transaction.add(R.id.fragments_container, recyclerViewFragment,RECYCLER_TAG)
+                    .commit();
         }
-        else {
-            //restore listener if Recycler fragment is already instantiated
-            Fragment recyclerViewFragment = getSupportFragmentManager().findFragmentByTag(RECYCLER_TAG);
-            if (recyclerViewFragment instanceof RecyclerViewFragment) {
-                ((RecyclerViewFragment) recyclerViewFragment).setOnItemClickListener(itemClickListener);
-            }
-        }
+        recyclerViewFragment.setOnItemClickListener(itemClickListener);
     }
 
 }

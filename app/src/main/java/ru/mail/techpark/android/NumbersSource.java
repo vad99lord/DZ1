@@ -6,7 +6,7 @@ public final class NumbersSource {
 
     private static final NumbersSource OUR_INSTANCE = new NumbersSource();
     public static final String DATA_SIZE = "NUMBERS_SIZE";
-    private int numbers;
+    private int mNumbers;
 
     private NumbersSource() {
         setSize(100);
@@ -38,15 +38,15 @@ public final class NumbersSource {
     }
 
     private void setSize(int size){
-        numbers = size;
+        mNumbers = size;
     }
 
     public int getSize() {
-        return numbers;
+        return mNumbers;
     }
 
     public void addItems(int numOfElements) {
-        numbers += numOfElements;
+        mNumbers += numOfElements;
     }
 
     public static class NumberEntity {
@@ -83,6 +83,6 @@ public final class NumbersSource {
     }
 
     public interface OnItemClickListener {
-        void onItemClick(NumberEntity number);
+        void onItemClick(NumberEntity numberEntity);
     }
 }
